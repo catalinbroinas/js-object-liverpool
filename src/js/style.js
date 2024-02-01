@@ -10,6 +10,10 @@ function Player(role) {
     this.role = role;
 }
 
-function outfieldPlayer(position) {
+function OutfieldPlayer(position) {
     this.position = position;
 }
+
+Object.setPrototypeOf(Player.prototype, Person.prototype);
+Object.setPrototypeOf(OutfieldPlayer.prototype, Person.prototype);
+Object.setPrototypeOf(OutfieldPlayer.prototype, Player.prototype);
