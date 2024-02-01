@@ -6,6 +6,10 @@ function Person(firstName, lastName, birthDate, nationality, job) {
     this.job = job;
 }
 
+Person.prototype.getFullName = function() {
+    return `${this.firstName} ${this.lastName}`;
+}
+
 function Player(role) {
     this.role = role;
 }
