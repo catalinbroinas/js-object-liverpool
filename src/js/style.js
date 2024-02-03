@@ -1,13 +1,19 @@
 function Person(firstName, lastName, birthDate, nationality, job) {
     this.firstName = firstName;
     this.lastName = lastName;
-    this.birthDate = birthDate;
+    this.birthDate = new Date(birthDate);
     this.nationality = nationality;
     this.job = job;
 }
 
 Person.prototype.getFullName = function() {
     return `${this.firstName} ${this.lastName}`;
+}
+
+Person.prototype.getAge = function() {
+    const ageDifMs = Date.now() - this.birthDate.getTime();
+    const ageDate = new Date(ageDifMs);
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
 }
 
 function Player(firstName, lastName, birthDate, nationality, job, role) {
@@ -27,6 +33,7 @@ OutfieldPlayer.prototype = Object.create(Player.prototype);
 OutfieldPlayer.prototype.constructor = OutfieldPlayer;
 
 // Create players
-const alissonBecker = new Player('Alisson', 'Becker', '02-10-1992', 'Brazilian', 'player', 'goalkeeper');
+const alissonBecker = new Player('Alisson', 'Becker', '1992-10-02', 'Brazilian', 'player', 'goalkeeper');
 
 console.log(alissonBecker.getFullName());
+console.log(alissonBecker.getAge());
