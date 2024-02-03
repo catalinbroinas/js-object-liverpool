@@ -10,14 +10,23 @@ Person.prototype.getFullName = function() {
     return `${this.firstName} ${this.lastName}`;
 }
 
-function Player(role) {
+function Player(firstName, lastName, birthDate, nationality, job, role) {
+    Person.call(this, firstName, lastName, birthDate, nationality, job);
     this.role = role;
 }
 
-function OutfieldPlayer(position) {
+Player.prototype = Object.create(Person.prototype);
+Player.prototype.constructor = Player;
+
+function OutfieldPlayer(firstName, lastName, birthDate, nationality, job, role, position) {
+    Player.call(this, firstName, lastName, birthDate, nationality, job, role);
     this.position = position;
 }
 
-Object.setPrototypeOf(Player.prototype, Person.prototype);
-Object.setPrototypeOf(OutfieldPlayer.prototype, Person.prototype);
-Object.setPrototypeOf(OutfieldPlayer.prototype, Player.prototype);
+OutfieldPlayer.prototype = Object.create(Player.prototype);
+OutfieldPlayer.prototype.constructor = OutfieldPlayer;
+
+// Create players
+const alissonBecker = new Player('Alisson', 'Becker', '02-10-1992', 'Brazilian', 'player', 'goalkeeper');
+
+console.log(alissonBecker.getFullName());
