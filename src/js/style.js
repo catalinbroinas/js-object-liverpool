@@ -37,8 +37,11 @@ OutfieldPlayer.prototype.constructor = OutfieldPlayer;
 
 // Create players
 const alissonBecker = new Player('Alisson', 'Becker', '1992-10-02', 'Brazilian', 'player', 'alisson.webp', 'goalkeeper');
+const alexArnold = new OutfieldPlayer('Alexander', 'Arnold', '1998-10-07', 'English','player', 'arnold.png', 'defender', 'right back');
+const wataruEndo = new OutfieldPlayer('Wataru', 'Endo', '1993-02-09', 'Japanese', 'player', 'endo.png', 'midfielder', 'defensive Midfield');
+const mohamedSalah = new OutfieldPlayer('Mohamed', 'Salah', '1992-06-15', 'Egyptian', 'player', 'salah.png', 'forward', 'right winger');
 
-TEAM.push(alissonBecker);
+TEAM.push(alissonBecker, alexArnold, wataruEndo, mohamedSalah);
 
 function createPlayerCard({ firstName, lastName, getFullName, birthDate, getAge, nationality, image, role, position }) {
     const column = document.createElement('div');
@@ -72,7 +75,6 @@ function createPlayerCard({ firstName, lastName, getFullName, birthDate, getAge,
     card.appendChild(cardBody);
     cardHeader.appendChild(cardFullName);
     cardBody.appendChild(cardAge);
-    cardBody.appendChild(cardNationality);
 
     if(position) {
         const cardPosition = document.createElement('p');
@@ -80,6 +82,8 @@ function createPlayerCard({ firstName, lastName, getFullName, birthDate, getAge,
         cardPosition.textContent = position;
         cardBody.appendChild(cardPosition);
     }
+    
+    cardBody.appendChild(cardNationality);
 
     return column;
 }
